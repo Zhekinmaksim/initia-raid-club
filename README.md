@@ -2,6 +2,43 @@
 
 Initia Raid Club is a fast, async onchain raid game for `INITIATE: The Initia Hackathon`.
 
+## Initia Hackathon Submission
+
+### Project Overview
+
+Initia Raid Club is a short-session onchain raid game built as a dedicated Initia MiniEVM rollup app. The product loop is simple: claim a handle, fund a run, enter a boss fight, resolve several fast turns, and settle loot plus leaderboard progress.
+
+### Custom Implementation
+
+- Custom MiniEVM contract for player state, tickets, raid sessions, action resolution, rewards, and leaderboard data.
+- Custom game loop and frontend instead of a direct blueprint clone.
+- Dual runtime model:
+  - demo-mode for fast product iteration
+  - live rollup mode through InterwovenKit and `MsgCall`
+
+### Initia-Native Features Used
+
+- Primary: `auto-signing` for repeated combat turns
+- Integrated UX stack: `@initia/interwovenkit-react`
+- Bridge entrypoint wired through Interwoven bridge modal
+
+### Deployment Evidence
+
+- Repository: [github.com/Zhekinmaksim/initia-raid-club](https://github.com/Zhekinmaksim/initia-raid-club)
+- Commit submitted: `eede5535521669b18dbdcd0cdf9bf879f5925111`
+- Public frontend: [initia-raid-club.vercel.app](https://initia-raid-club.vercel.app)
+- Rollup chain ID: `raidclub-1`
+- VM: `MiniEVM`
+- Deployed contract: `0x994f46Ca8e811bd0454aD5Cf173eA77b0b270a3c`
+- Onchain core logic: [contracts/raidclub-evm/src/RaidClub.sol](/Users/zmaxx/Projects/Initia%20raid%20club/contracts/raidclub-evm/src/RaidClub.sol)
+- Native feature frontend path: [lib/initia/use-raid-club-mainnet.ts](/Users/zmaxx/Projects/Initia%20raid%20club/lib/initia/use-raid-club-mainnet.ts)
+
+### Judge Notes
+
+- The public Vercel app currently runs in demo-mode because the rollup endpoints in local runtime config still point to `localhost`.
+- The live rollup path is implemented in the repo and works against the deployed rollup contract once public RPC / REST / JSON-RPC / indexer endpoints are exposed.
+- The remaining submission artifact to add is the public 1–3 minute demo video URL.
+
 The MVP is structured around one tight consumer loop:
 
 1. connect wallet
@@ -44,7 +81,7 @@ Implemented now:
 Still required before final submission:
 - deploy the contract to your live rollup and fill real env values
 - bind a real contract address in `.env`
-- fill `.initia/submission.json` with live repo / commit / deployed address
+- expose public rollup RPC / REST / JSON-RPC / indexer endpoints for the hosted frontend
 - record the public 1-3 minute demo video
 
 ## Stack

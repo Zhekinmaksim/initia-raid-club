@@ -1,12 +1,12 @@
 {
   "project_name": "Initia Raid Club",
-  "repo_url": "https://github.com/replace-me/initia-raid-club",
-  "commit_sha": "REPLACE_WITH_40_CHAR_COMMIT_SHA",
+  "repo_url": "https://github.com/Zhekinmaksim/initia-raid-club",
+  "commit_sha": "eede5535521669b18dbdcd0cdf9bf879f5925111",
   "rollup_chain_id": "raidclub-1",
   "deployed_address": "0x994f46Ca8e811bd0454aD5Cf173eA77b0b270a3c",
   "vm": "evm",
   "native_feature": "auto-signing",
   "core_logic_path": "contracts/raidclub-evm/src/RaidClub.sol",
   "native_feature_frontend_path": "lib/initia/use-raid-club-mainnet.ts",
-  "demo_video_url": "https://youtu.be/replace-me"
+  "demo_video_url": "https://youtu.be/ADD_PUBLIC_DEMO_VIDEO"
 }
