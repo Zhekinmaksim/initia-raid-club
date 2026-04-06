@@ -105,8 +105,8 @@ const basePlayer: PlayerProfile = {
 const initialActivity: ActivityEntry[] = [
   {
     id: crypto.randomUUID(),
-    title: "Mainnet runtime armed",
-    detail: "Connect a wallet, enable autosign, and register a raider on your MiniEVM rollup.",
+    title: "Mainnet client ready",
+    detail: "Connect a wallet, enable autosign, and create a raider on your MiniEVM rollup.",
     timestamp: "Now",
     tone: "neutral",
   },
@@ -243,8 +243,8 @@ export function useRaidClubMainnet(): RuntimeModel {
             transcript: current?.status === "active" ? current.transcript : transcript,
             autoSignEnabled,
             message: autoSignEnabled
-              ? "Auto-signing is live for MsgCall actions on this rollup."
-              : "Enable autosign to remove repeat confirmations from combat.",
+              ? "Autosign is on for MsgCall actions on this rollup."
+              : "Turn on autosign to avoid confirming every combat turn.",
           }),
         )
       } else if (!raidSession || raidSession.status === "active") {
@@ -316,7 +316,7 @@ export function useRaidClubMainnet(): RuntimeModel {
     openWallet()
     pushActivity(
       "Wallet opened",
-      "Use Initia Wallet to manage your username profile. This app reads your live username when one is bound.",
+      "Use Initia Wallet to manage your username. This app reads the live handle when one is set.",
       "neutral",
     )
   }, [openWallet, pushActivity])
@@ -330,7 +330,7 @@ export function useRaidClubMainnet(): RuntimeModel {
     openBridge(defaultBridgeRoute)
     pushActivity(
       "Bridge modal opened",
-      `Route prefilled from ${raidClubEnv.bridgeSrcChainId} into ${raidClubEnv.prettyName}.`,
+      `Bridge route filled from ${raidClubEnv.bridgeSrcChainId} into ${raidClubEnv.prettyName}.`,
       "neutral",
     )
   }, [isConnected, openBridge, openConnect, pushActivity])
@@ -389,8 +389,8 @@ export function useRaidClubMainnet(): RuntimeModel {
               transcript: nextTranscript,
               autoSignEnabled,
               message: autoSignEnabled
-                ? "Auto-signing granted. Continue chaining actions."
-                : "Enable autosign for a smoother repeated-action loop.",
+                ? "Autosign is on. Keep going."
+                : "Turn on autosign before chaining turns.",
             }),
           )
         },
@@ -523,7 +523,7 @@ export function useRaidClubMainnet(): RuntimeModel {
   const enableAutosign = useCallback(async () => {
     try {
       await autoSign.enable(raidClubEnv.chainId)
-      pushActivity("Autosign enabled", "MsgCall permission granted for the current rollup.", "success")
+      pushActivity("Autosign enabled", "MsgCall permission granted for this rollup.", "success")
     } catch (error) {
       pushActivity("Autosign failed", extractErrorMessage(error), "warning")
     }
@@ -576,16 +576,16 @@ export function useRaidClubMainnet(): RuntimeModel {
   const footerPoints = useMemo(() => {
     const points = [
       `Bridge ${raidClubEnv.nativeSymbol} into ${raidClubEnv.prettyName} before minting extra raid tickets.`,
-      "Autosign should be enabled before demoing repeated combat actions.",
+      "Turn on autosign before showing repeated combat turns.",
       "Wallet usernames are read live from Initia Wallet when present.",
     ]
 
     if (!hasProfile) {
-      points.unshift("Register the wallet once to seed a starter loadout and 2 free tickets.")
+      points.unshift("Register the wallet once to get the starter loadout and 2 free tickets.")
     }
 
     if (!autoSignEnabled) {
-      points.unshift("Autosign is still off, so combat will require a confirmation per action.")
+      points.unshift("Autosign is still off, so each combat turn needs a confirmation.")
     }
 
     return points
@@ -610,7 +610,7 @@ export function useRaidClubMainnet(): RuntimeModel {
     startRaid,
     performRaidAction,
     returnToBase,
-    equipItem: () => pushActivity("Onchain gear", "Best-in-slot gear auto-equips after victory drops.", "neutral"),
+    equipItem: () => pushActivity("Onchain gear", "Dropped gear auto-equips after a win.", "neutral"),
     resetDemo,
     headerBadges,
     judgePathTitle: "Mainnet judge path",
@@ -618,14 +618,14 @@ export function useRaidClubMainnet(): RuntimeModel {
       "Connect wallet and create a raider profile.",
       "Enable autosign for MsgCall on the rollup.",
       "Open bridge, then mint a raid ticket from live balance.",
-      "Run 3-5 onchain actions and show settlement plus leaderboard.",
+      "Play 3-5 onchain turns, then show settlement and leaderboard.",
     ],
     identityTitle: "Mainnet controls",
     identityHelp: isConnected
       ? `${username ?? shortAddress(initiaAddress || hexAddress || "")} connected to ${raidClubEnv.prettyName}.`
-      : "Connect a wallet to switch this UI from prototype mode into a live rollup client.",
+      : "Connect a wallet to switch this UI from demo mode to the live rollup.",
     identityActions,
-    footerTitle: "Mainnet readiness",
+    footerTitle: "Mainnet notes",
     footerPoints,
   }
 }

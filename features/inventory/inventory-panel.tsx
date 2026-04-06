@@ -21,7 +21,7 @@ export function InventoryPanel({ inventory, player, onEquip }: InventoryPanelPro
         <div className="border-t border-white/10 pt-4">
           <p className="editorial-title text-[2rem] text-[#f3eee4]">No gear synced yet</p>
           <p className="mt-3 text-sm leading-7 text-[#c7c0b5]">
-            Clear a raid to mint the first onchain upgrade or use the mock loop to iterate on the UX while your contract is still offline.
+            Clear a raid to get your first onchain upgrade. In demo mode, use the mock loop until the contract is live.
           </p>
         </div>
       </Panel>

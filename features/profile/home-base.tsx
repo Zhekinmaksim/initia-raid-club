@@ -30,7 +30,7 @@ export function HomeBase({
             <div className="border-t border-white/10 pt-4">
               <p className="section-code text-[10px] text-[#8f877c]">Raid identity</p>
               <p className="editorial-title mt-4 text-[3rem] leading-[0.92] text-[#f3eee4]">{player.username ?? "Claim username"}</p>
-              <p className="mt-3 text-[15px] leading-7 text-[#d0c8bb]">{player.faction} faction, level {player.level}, built for short session re-entry.</p>
+              <p className="mt-3 text-[15px] leading-7 text-[#d0c8bb]">{player.faction} faction, level {player.level}.</p>
 
               <dl className="mt-5 grid gap-3 text-sm">
                 <div className="flex justify-between gap-4 border-b border-white/10 pb-3">
@@ -50,9 +50,7 @@ export function HomeBase({
 
             <div className="border-t border-white/10 pt-4">
               <p className="section-code text-[10px] text-[#8f877c]">Quick treasury actions</p>
-              <p className="mt-4 text-[15px] leading-7 text-[#d0c8bb]">
-                Keep the loop tight: top up, mint, and move straight into the next run without breaking context.
-              </p>
+              <p className="mt-4 text-[15px] leading-7 text-[#d0c8bb]">Top up, mint a ticket, and go again.</p>
               <div className="mt-5 flex flex-col gap-3">
                 <button
                   onClick={onBridgeIn}
@@ -98,7 +96,7 @@ export function HomeBase({
             <div className="border-t border-white/10 pt-4">
               <p className="section-code text-[10px] text-[#8f877c]">Bridge treasury</p>
               <p className="editorial-title mt-3 text-[2.1rem] text-[#f3eee4]">{player.bridgeBalance} INIT</p>
-              <p className="mt-2 text-[15px] leading-7 text-[#d0c8bb]">Enough to sustain another high-value judge pass.</p>
+              <p className="mt-2 text-[15px] leading-7 text-[#d0c8bb]">Enough for another demo run.</p>
             </div>
           </div>
         </Panel>
@@ -106,22 +104,20 @@ export function HomeBase({
         <Panel eyebrow="Featured Operation" title="Nightglass Warden" accent="blue">
           <div className="border-t border-white/10 pt-4">
             <p className="section-code text-[10px] text-[#8f877c]">Daily boss</p>
-            <p className="mt-4 text-[15px] leading-7 text-[#d0c8bb]">
-              A compact showcase encounter tuned for a 45-second demo. Guard once, pressure twice, then close on the special.
-            </p>
+            <p className="mt-4 text-[15px] leading-7 text-[#d0c8bb]">A short boss run tuned for a 45-second demo. Guard once, push twice, then finish on special.</p>
 
             <div className="mt-5 border-t border-white/10 pt-4">
               <p className="section-code text-[10px] text-[#8f877c]">Modifier</p>
-              <p className="mt-3 text-[15px] leading-7 text-[#d0c8bb]">Counter stance flips every turn and rewards disciplined timing.</p>
+              <p className="mt-3 text-[15px] leading-7 text-[#d0c8bb]">The boss changes stance every turn. Wait for the opening.</p>
             </div>
 
             <div className="mt-5 border-t border-white/10 pt-4">
               <p className="section-code text-[10px] text-[#8f877c]">How one run works</p>
               <div className="mt-4 space-y-3 text-[15px] leading-7 text-[#d0c8bb]">
-                <p>1. Claim a username once, then pick any raid card below.</p>
-                <p>2. Starting a raid spends tickets and energy from your profile.</p>
-                <p>3. Inside the raid you have up to 5 actions: attack, guard, special, or recover.</p>
-                <p>4. Win by dropping the boss HP to zero before your HP hits zero or the fifth action ends.</p>
+                <p>1. Claim a handle, then pick a raid.</p>
+                <p>2. Starting a raid spends tickets and energy.</p>
+                <p>3. You get up to 5 turns: attack, guard, special, or recover.</p>
+                <p>4. Win by dropping the boss HP to zero before turn five ends.</p>
               </div>
             </div>
 

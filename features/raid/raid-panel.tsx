@@ -4,10 +4,10 @@ import { getRaidDefinition } from "@/lib/game/engine"
 import type { ActionType, PlayerProfile, RaidSession } from "@/lib/game/types"
 
 const actionDeck: Array<{ id: ActionType; label: string; description: string }> = [
-  { id: "attack", label: "Attack", description: "Fast damage for tempo clears." },
-  { id: "guard", label: "Guard", description: "Reduced damage and safer turn." },
-  { id: "special", label: "Special", description: "High burst to end the run early." },
-  { id: "recover", label: "Recover", description: "Patch HP while staying in the loop." },
+  { id: "attack", label: "Attack", description: "Low-cost damage." },
+  { id: "guard", label: "Guard", description: "Safer turn. Take less damage." },
+  { id: "special", label: "Special", description: "Heavy burst. Best used to finish." },
+  { id: "recover", label: "Recover", description: "Recover some HP." },
 ]
 
 type RaidPanelProps = {
@@ -21,7 +21,7 @@ export function RaidPanel({ session, player, onAction, onReturn }: RaidPanelProp
   if (!session) {
     return (
       <Panel eyebrow="Raid Feed" title="No raid active">
-        <p className="text-sm leading-7 text-[#c7c0b5]">Pick a raid from the base and use this panel to demo fast action resolution.</p>
+        <p className="text-sm leading-7 text-[#c7c0b5]">Pick a raid from the base to open the live combat view.</p>
       </Panel>
     )
   }
@@ -50,15 +50,15 @@ export function RaidPanel({ session, player, onAction, onReturn }: RaidPanelProp
             <div className="grid gap-3 border-t border-white/10 pt-4 md:grid-cols-3">
               <div>
                 <p className="section-code text-[10px] text-[#8f877c]">Goal</p>
-                <p className="mt-2 text-sm leading-7 text-[#c7c0b5]">Kill the boss before action five ends.</p>
+                <p className="mt-2 text-sm leading-7 text-[#c7c0b5]">Kill the boss before turn five ends.</p>
               </div>
               <div>
                 <p className="section-code text-[10px] text-[#8f877c]">Fail state</p>
-                <p className="mt-2 text-sm leading-7 text-[#c7c0b5]">You lose if your HP hits zero or the boss survives the fifth action.</p>
+                <p className="mt-2 text-sm leading-7 text-[#c7c0b5]">You lose if your HP hits zero or the boss is still up after turn five.</p>
               </div>
               <div>
                 <p className="section-code text-[10px] text-[#8f877c]">Reward</p>
-                <p className="mt-2 text-sm leading-7 text-[#c7c0b5]">A clear pays coins, XP, and sometimes a new item.</p>
+                <p className="mt-2 text-sm leading-7 text-[#c7c0b5]">A clear pays coins, XP, and sometimes gear.</p>
               </div>
             </div>
 
@@ -140,8 +140,8 @@ export function RaidPanel({ session, player, onAction, onReturn }: RaidPanelProp
               <p className="section-code text-[10px] text-[#8f877c]">Settlement</p>
               <p className="mt-3 text-sm leading-7 text-[#d3cbbf]">
                 {session.status === "won"
-                  ? `Clear confirmed. ${session.rewardCoins} coins and ${session.rewardXp} XP credited${session.rewardItem ? `, plus ${session.rewardItem.name}.` : "."}`
-                  : "Run failed. HP refilled on return so the judge flow can continue immediately."}
+                  ? `Clear confirmed. ${session.rewardCoins} coins and ${session.rewardXp} XP added${session.rewardItem ? `, plus ${session.rewardItem.name}.` : "."}`
+                  : "Run failed. HP refills on return so you can go again."}
               </p>
             </div>
           ) : null}

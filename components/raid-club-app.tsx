@@ -109,21 +109,21 @@ function MockRaidClubApp() {
     headerBadges: ["InterwovenKit", "Auto-sign", "60s demo"],
     judgePathTitle: "Judge path",
     judgePath: [
-      "Connect wallet and claim a username.",
-      "Bridge in, mint a ticket, enter one raid.",
-      "Run 3-5 auto-signed actions without popup spam.",
-      "Settle loot, then show leaderboard momentum.",
+      "Connect a wallet and claim a handle.",
+      "Bridge in, mint one ticket, enter a raid.",
+      "Play 3-5 auto-signed turns.",
+      "Show loot, then open the leaderboard.",
     ],
     identityTitle: "Username setup",
-    identityHelp: "Keep this real flow for Initia usernames.",
+    identityHelp: "Demo handle flow. Replace with initia-usernames in live mode.",
     identityMode: "input",
     identityPlaceholder: "raid.handle",
     identityButtonLabel: "Claim username",
-    footerTitle: "Gap to chain integration",
+    footerTitle: "Still mocked",
     footerPoints: [
-      "Replace mock username binding with initia-usernames tx flow.",
-      "Wire ticket mint, raid start, and raid actions through InterwovenKit.",
-      "Swap local loot resolution with deployed appchain state reads.",
+      "Swap the local handle flow for initia-usernames.",
+      "Send ticket mint, raid start, and raid turns through InterwovenKit.",
+      "Read loot and outcomes from the deployed appchain.",
     ],
   }
 
@@ -247,16 +247,16 @@ function RaidClubShell({
 
   const primaryAction = (() => {
     if (runtime.identityMode === "actions") {
-      if (connectAction) return { title: "Connect wallet", detail: "Connect to switch from demo to live rollup.", buttonLabel: connectAction.label, onClick: connectAction.onClick, secondaryLabel: "Open controls", onSecondaryClick: () => runtime.setScreen("base" as Screen) }
-      if (createRaiderAction) return { title: "Create raider", detail: "Seed the onchain profile once.", buttonLabel: createRaiderAction.label, onClick: createRaiderAction.onClick }
-      if (enableAutosignAction) return { title: "Enable autosign", detail: "Grant autosign so actions feel like gameplay.", buttonLabel: enableAutosignAction.label, onClick: enableAutosignAction.onClick }
-      if (runtime.player.tickets < 1) return { title: "Get a ticket", detail: "Bridge if needed, then mint one ticket.", buttonLabel: runtime.player.bridgeBalance > 0 ? runtime.ticketLabel : runtime.bridgeLabel, onClick: runtime.player.bridgeBalance > 0 ? runtime.mintRaidTicket : runtime.mockBridgeIn, secondaryLabel: runtime.player.bridgeBalance > 0 ? "Open bridge" : undefined, onSecondaryClick: runtime.player.bridgeBalance > 0 ? runtime.mockBridgeIn : undefined }
-      if (hasActiveRaid) return { title: "Continue raid", detail: "A run is live.", buttonLabel: "Open raid", onClick: () => runtime.setScreen("raid") }
-      return { title: "Start featured raid", detail: "Nightglass Warden guided path.", buttonLabel: "Start Nightglass Warden", onClick: () => { runtime.setScreen("base"); runtime.startRaid("eclipse-altar") }, secondaryLabel: "Leaderboard", onSecondaryClick: () => runtime.setScreen("leaderboard") }
+      if (connectAction) return { title: "Connect wallet", detail: "Connect to move from demo into the live rollup.", buttonLabel: connectAction.label, onClick: connectAction.onClick, secondaryLabel: "Open controls", onSecondaryClick: () => runtime.setScreen("base" as Screen) }
+      if (createRaiderAction) return { title: "Create raider", detail: "Create your onchain raider once.", buttonLabel: createRaiderAction.label, onClick: createRaiderAction.onClick }
+      if (enableAutosignAction) return { title: "Enable autosign", detail: "Turn on autosign before combat.", buttonLabel: enableAutosignAction.label, onClick: enableAutosignAction.onClick }
+      if (runtime.player.tickets < 1) return { title: "Get a ticket", detail: "Bridge in if needed, then mint one ticket.", buttonLabel: runtime.player.bridgeBalance > 0 ? runtime.ticketLabel : runtime.bridgeLabel, onClick: runtime.player.bridgeBalance > 0 ? runtime.mintRaidTicket : runtime.mockBridgeIn, secondaryLabel: runtime.player.bridgeBalance > 0 ? "Open bridge" : undefined, onSecondaryClick: runtime.player.bridgeBalance > 0 ? runtime.mockBridgeIn : undefined }
+      if (hasActiveRaid) return { title: "Continue raid", detail: "A run is already in progress.", buttonLabel: "Open raid", onClick: () => runtime.setScreen("raid") }
+      return { title: "Start featured raid", detail: "Open the Nightglass Warden run.", buttonLabel: "Start Nightglass Warden", onClick: () => { runtime.setScreen("base"); runtime.startRaid("eclipse-altar") }, secondaryLabel: "Leaderboard", onSecondaryClick: () => runtime.setScreen("leaderboard") }
     }
-    if (!runtime.player.username) return { title: runtime.quickStartDemo ? "Play Nightglass Warden" : "Claim username", detail: runtime.quickStartDemo ? "Start the featured raid, watch three actions, see the loot." : "Set a handle to unlock the loop.", buttonLabel: runtime.quickStartDemo ? "Play 20s boss run" : "Claim username", onClick: runtime.quickStartDemo ?? (() => runtime.bindUsername(usernameDraft || "nightglass.raider")), secondaryLabel: runtime.quickStartDemo ? "Manual claim" : undefined, onSecondaryClick: runtime.quickStartDemo ? openManualIdentityFlow : undefined }
-    if (hasActiveRaid) return { title: "Continue raid", detail: "Finish the active sequence.", buttonLabel: "Open raid", onClick: () => runtime.setScreen("raid") }
-    return { title: runtime.quickStartDemo ? "Run the boss" : "Start featured raid", detail: runtime.quickStartDemo ? "Skips setup, 20s product showcase." : "Highlighted boss lane — fastest demo.", buttonLabel: runtime.quickStartDemo ? "Play 20s boss run" : "Start Nightglass Warden", onClick: runtime.quickStartDemo ?? (() => { runtime.setScreen("base"); runtime.startRaid("eclipse-altar") }), secondaryLabel: "Home base", onSecondaryClick: () => runtime.setScreen("base") }
+    if (!runtime.player.username) return { title: runtime.quickStartDemo ? "Play Nightglass Warden" : "Claim username", detail: runtime.quickStartDemo ? "Start the boss run and watch three turns resolve." : "Set a handle before you enter.", buttonLabel: runtime.quickStartDemo ? "Play 20s boss run" : "Claim username", onClick: runtime.quickStartDemo ?? (() => runtime.bindUsername(usernameDraft || "nightglass.raider")), secondaryLabel: runtime.quickStartDemo ? "Manual claim" : undefined, onSecondaryClick: runtime.quickStartDemo ? openManualIdentityFlow : undefined }
+    if (hasActiveRaid) return { title: "Continue raid", detail: "Finish the current run.", buttonLabel: "Open raid", onClick: () => runtime.setScreen("raid") }
+    return { title: runtime.quickStartDemo ? "Run the boss" : "Start featured raid", detail: runtime.quickStartDemo ? "Quick 20-second boss pass." : "Open the featured boss run.", buttonLabel: runtime.quickStartDemo ? "Play 20s boss run" : "Start Nightglass Warden", onClick: runtime.quickStartDemo ?? (() => { runtime.setScreen("base"); runtime.startRaid("eclipse-altar") }), secondaryLabel: "Home base", onSecondaryClick: () => runtime.setScreen("base") }
   })()
 
   const openFeaturedRaid = () => {
@@ -382,7 +382,7 @@ function RaidClubShell({
                 <span className="section-code text-[10px] text-[#d7b37b]">Obsidian Wake</span>
               </div>
               <p className="mt-1.5 max-w-lg text-[15px] leading-6 text-[#c2baae]">
-                Beat the boss in 5 actions. Claim a handle, spend a ticket, let chain UX disappear into the action.
+                Beat the boss in 5 actions. Claim a handle, spend a ticket, and go straight into the fight.
               </p>
               <div className="mt-3 flex flex-wrap items-center gap-2">
                 <button onClick={primaryAction.onClick} className="rounded-full bg-[#f3eee4] px-4 py-2.5 text-[13px] font-medium text-[#111] transition hover:bg-white">{primaryAction.buttonLabel}</button>

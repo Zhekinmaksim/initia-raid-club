@@ -15,7 +15,7 @@ const tidecallSigil: LootItem = {
   slot: "charm",
   rarity: "Epic",
   power: 10,
-  description: "A resonance charm that softens boss strikes and buffs raid payout.",
+  description: "A charm that softens boss strikes and bumps payout.",
 }
 
 const voidglassTotem: LootItem = {
@@ -24,7 +24,7 @@ const voidglassTotem: LootItem = {
   slot: "relic",
   rarity: "Legendary",
   power: 14,
-  description: "A relic pulled from the breach, humming with daily boss energy.",
+  description: "A relic pulled from the breach, still warm from the daily boss.",
 }
 
 const ashloopDagger: LootItem = {
@@ -33,7 +33,7 @@ const ashloopDagger: LootItem = {
   slot: "weapon",
   rarity: "Common",
   power: 4,
-  description: "Compact steel for fast clears and ticket farming.",
+  description: "Compact steel for short runs and quick clears.",
 }
 
 const echoTonic: LootItem = {
@@ -42,7 +42,7 @@ const echoTonic: LootItem = {
   slot: "charm",
   rarity: "Rare",
   power: 6,
-  description: "A pulse vial that refunds stamina after a clean raid run.",
+  description: "A tonic that gives some stamina back after a clean run.",
 }
 
 export const raidDefinitions: RaidDefinition[] = [
@@ -51,7 +51,7 @@ export const raidDefinitions: RaidDefinition[] = [
     name: "Reef Run",
     enemyName: "Coral Marauder",
     difficulty: "Easy",
-    synopsis: "Warm-up run for quick coins and streak padding.",
+    synopsis: "Easy run for coins and streaks.",
     theme: "Azure Reef",
     ticketCost: 1,
     energyCost: 12,
@@ -66,7 +66,7 @@ export const raidDefinitions: RaidDefinition[] = [
     name: "Forge Surge",
     enemyName: "Brass Hydra",
     difficulty: "Medium",
-    synopsis: "A higher-risk raid with better loot odds and leaderboard value.",
+    synopsis: "Medium run with better drop odds.",
     theme: "Molten Foundry",
     ticketCost: 1,
     energyCost: 18,
@@ -81,7 +81,7 @@ export const raidDefinitions: RaidDefinition[] = [
     name: "Eclipse Altar",
     enemyName: "Nightglass Warden",
     difficulty: "Boss",
-    synopsis: "The daily showcase fight. Short, brutal, and visibly premium.",
+    synopsis: "Daily boss run. Short and punishing.",
     theme: "Black Halo Citadel",
     ticketCost: 2,
     energyCost: 24,
@@ -100,7 +100,7 @@ export const starterInventory: LootItem[] = [
     slot: "weapon",
     rarity: "Common",
     power: 3,
-    description: "Starter steel for fresh recruits entering the breach.",
+    description: "Starter steel for your first run.",
   },
   {
     id: "signal-band",
@@ -108,7 +108,7 @@ export const starterInventory: LootItem[] = [
     slot: "charm",
     rarity: "Common",
     power: 2,
-    description: "Keeps your faction signature stable between raid hops.",
+    description: "Keeps your faction mark stable between runs.",
   },
 ]
 
@@ -116,14 +116,14 @@ export const starterActivity: ActivityEntry[] = [
   {
     id: "seed-1",
     title: "Bridge primed",
-    detail: "Mock Interwoven bridge staged with 40 INIT for onboarding demo.",
+    detail: "Mock bridge loaded with 40 INIT for the demo.",
     timestamp: "Just now",
     tone: "neutral",
   },
   {
     id: "seed-2",
     title: "Daily boss online",
-    detail: "Nightglass Warden rotated in with a guarded-counter modifier.",
+    detail: "Nightglass Warden is live with a guarded-counter stance.",
     timestamp: "6m ago",
     tone: "warning",
   },
