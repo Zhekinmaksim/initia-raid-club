@@ -1,0 +1,13 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="raid-club-mark" x1="20" y1="16" x2="100" y2="104" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3EEE4" />
+      <stop offset="1" stop-color="#D7B37B" />
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="32" stroke="rgba(243,238,228,0.18)" stroke-width="1.5" />
+  <path d="M60 16L70 37L60 32L50 37L60 16ZM56 37H64L69 92L60 104L51 92L56 37ZM44 92H76L60 104L44 92Z" fill="url(#raid-club-mark)" />
+  <path d="M31 62C36 48 47 42 60 40C47 54 46 74 57 88C44 84 35 76 31 62Z" fill="rgba(215,179,123,0.72)" />
+  <path d="M89 62C84 48 73 42 60 40C73 54 74 74 63 88C76 84 85 76 89 62Z" fill="rgba(243,238,228,0.6)" />
+  <circle cx="60" cy="28" r="4" fill="#F3EEE4" />
+</svg>

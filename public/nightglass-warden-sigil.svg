@@ -1,0 +1,42 @@
+<svg width="720" height="720" viewBox="0 0 720 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="warden-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(360 320) rotate(90) scale(240 240)">
+      <stop stop-color="#D7B37B" stop-opacity="0.42" />
+      <stop offset="0.55" stop-color="#D7B37B" stop-opacity="0.12" />
+      <stop offset="1" stop-color="#D7B37B" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="warden-blade" x1="250" y1="120" x2="470" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3EEE4" />
+      <stop offset="1" stop-color="#D7B37B" />
+    </linearGradient>
+    <linearGradient id="warden-wing" x1="160" y1="230" x2="560" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D7B37B" stop-opacity="0.95" />
+      <stop offset="1" stop-color="#F3EEE4" stop-opacity="0.52" />
+    </linearGradient>
+  </defs>
+
+  <rect width="720" height="720" rx="48" fill="#121212" />
+  <circle cx="360" cy="360" r="212" stroke="rgba(243,238,228,0.09)" stroke-width="2" />
+  <circle cx="360" cy="360" r="156" stroke="rgba(215,179,123,0.16)" stroke-width="2" />
+  <path d="M70 360H650" stroke="rgba(243,238,228,0.06)" stroke-width="2" />
+  <path d="M360 70V650" stroke="rgba(243,238,228,0.06)" stroke-width="2" />
+  <circle cx="360" cy="320" r="240" fill="url(#warden-glow)" />
+
+  <path
+    d="M360 108L407 208L360 184L313 208L360 108ZM333 216H387L420 535L360 612L300 535L333 216ZM254 536H466L360 612L254 536Z"
+    fill="url(#warden-blade)"
+  />
+
+  <path
+    d="M170 360C204 266 278 224 360 208C278 302 266 438 336 542C256 518 199 456 170 360Z"
+    fill="url(#warden-wing)"
+  />
+  <path
+    d="M550 360C516 266 442 224 360 208C442 302 454 438 384 542C464 518 521 456 550 360Z"
+    fill="url(#warden-wing)"
+    opacity="0.88"
+  />
+
+  <circle cx="360" cy="176" r="16" fill="#F3EEE4" />
+  <circle cx="360" cy="176" r="8" fill="#121212" />
+</svg>
