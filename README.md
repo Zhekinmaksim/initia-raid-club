@@ -26,7 +26,7 @@ Initia Raid Club is a short-session onchain raid game built as a dedicated Initi
 
 - Repository: [github.com/Zhekinmaksim/initia-raid-club](https://github.com/Zhekinmaksim/initia-raid-club)
 - Commit submitted: `eede5535521669b18dbdcd0cdf9bf879f5925111`
-- Public frontend: [initia-raid-club.vercel.app](https://initia-raid-club.vercel.app)
+- Public frontend: [initiaraid.club](https://initiaraid.club)
 - Rollup chain ID: `raidclub-1`
 - VM: `MiniEVM`
 - Deployed contract: `0x994f46Ca8e811bd0454aD5Cf173eA77b0b270a3c`
