@@ -50,7 +50,9 @@ export function RaidPanel({ session, player, onAction, onReturn }: RaidPanelProp
             <div className="grid gap-3 border-t border-white/10 pt-4 md:grid-cols-3">
               <div>
                 <p className="section-code text-[10px] text-[#8f877c]">Goal</p>
-                <p className="mt-2 text-sm leading-7 text-[#c7c0b5]">Kill the boss before turn five ends.</p>
+                <p className="mt-2 text-sm leading-7 text-[#c7c0b5]">
+                  For the featured boss demo, clear the fight in three turns: guard, attack, special.
+                </p>
               </div>
               <div>
                 <p className="section-code text-[10px] text-[#8f877c]">Fail state</p>

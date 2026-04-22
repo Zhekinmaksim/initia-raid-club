@@ -53,6 +53,33 @@ const initialPlayer = (): PlayerProfile => ({
   },
 })
 
+const demoPresetPlayer = (): PlayerProfile => ({
+  ...initialPlayer(),
+  username: "nightglass.raider",
+  hp: 100,
+  energy: 100,
+  tickets: 3,
+  bridgeBalance: 30,
+})
+
+const demoPresetActivity = (): ActivityEntry[] => [
+  {
+    id: crypto.randomUUID(),
+    title: "Demo preset ready",
+    detail: "Nightglass Warden route is primed for a clean recording pass.",
+    timestamp: "Now",
+    tone: "success",
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Username claimed",
+    detail: "nightglass.raider is bound and ready for the featured boss run.",
+    timestamp: "Now",
+    tone: "success",
+  },
+  ...starterActivity,
+]
+
 export const buildMockLeaderboard = (player: PlayerProfile): LeaderboardEntry[] =>
   [
     {
@@ -333,13 +360,13 @@ export const useRaidClubStore = create<GameState>((set, get) => ({
   resetDemo: () =>
     set({
       screen: "base",
-      player: initialPlayer(),
+      player: demoPresetPlayer(),
       inventory: starterInventory,
       raidSession: null,
-      activity: starterActivity,
+      activity: demoPresetActivity(),
       nativeFeatures: {
         autoSigningArmed: true,
-        usernamesBound: false,
+        usernamesBound: true,
         bridgeConnected: true,
       },
     }),

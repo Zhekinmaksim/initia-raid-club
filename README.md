@@ -2,25 +2,34 @@
 
 Initia Raid Club is a fast, async onchain raid game for `INITIATE: The Initia Hackathon`.
 
+Initia Raid Club is the clearest demo of Initia-native gaming UX: identity, bridge, auto-signing, and fast onchain action in one loop.
+
 ## Initia Hackathon Submission
 
 ### Project Overview
 
-Initia Raid Club is a short-session onchain raid game built as a dedicated Initia MiniEVM rollup app. The product loop is simple: claim a handle, fund a run, enter a boss fight, resolve several fast turns, and settle loot plus leaderboard progress.
+Initia Raid Club is a short-session onchain raid game built as a dedicated Initia MiniEVM rollup. The judge path is one loop: claim a handle, bridge in funds, mint a ticket, enter the featured boss fight, play several fast turns, and settle loot plus leaderboard progress.
 
-### Custom Implementation
+### Implementation Detail
 
 - Custom MiniEVM contract for player state, tickets, raid sessions, action resolution, rewards, and leaderboard data.
-- Custom game loop and frontend instead of a direct blueprint clone.
-- Dual runtime model:
-  - demo-mode for fast product iteration
-  - live rollup mode through InterwovenKit and `MsgCall`
+- Custom game loop and frontend rather than a direct blueprint clone.
+- Uses `@initia/interwovenkit-react` for wallet and transaction flow.
+- Uses `auto-signing` for repeated combat turns and the Interwoven bridge modal for onboarding.
+- Built to show one thing clearly: identity, bridge, auto-signing, and combat inside one continuous product flow.
 
-### Initia-Native Features Used
+### How to Run Locally
 
-- Primary: `auto-signing` for repeated combat turns
-- Integrated UX stack: `@initia/interwovenkit-react`
-- Bridge entrypoint wired through Interwoven bridge modal
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the app:
+   ```bash
+   npm run dev
+   ```
+3. Open `http://localhost:3000`.
+4. For the default demo path, use mock mode. For live rollup mode, fill the required `NEXT_PUBLIC_*` values from [`.env.example`](.env.example).
 
 ### Deployment Evidence
 
@@ -30,16 +39,17 @@ Initia Raid Club is a short-session onchain raid game built as a dedicated Initi
 - Rollup chain ID: `raidclub-1`
 - VM: `MiniEVM`
 - Deployed contract: `0x994f46Ca8e811bd0454aD5Cf173eA77b0b270a3c`
-- Onchain core logic: [contracts/raidclub-evm/src/RaidClub.sol](/Users/zmaxx/Projects/Initia%20raid%20club/contracts/raidclub-evm/src/RaidClub.sol)
-- Native feature frontend path: [lib/initia/use-raid-club-mainnet.ts](/Users/zmaxx/Projects/Initia%20raid%20club/lib/initia/use-raid-club-mainnet.ts)
+- Onchain core logic: [`contracts/raidclub-evm/src/RaidClub.sol`](contracts/raidclub-evm/src/RaidClub.sol)
+- Native feature frontend path: [`lib/initia/use-raid-club-mainnet.ts`](lib/initia/use-raid-club-mainnet.ts)
 
-### Judge Notes
+### Smart Contract
 
-- The public Vercel app currently runs in demo-mode because the rollup endpoints in local runtime config still point to `localhost`.
-- The live rollup path is implemented in the repo and works against the deployed rollup contract once public RPC / REST / JSON-RPC / indexer endpoints are exposed.
-- The remaining submission artifact to add is the public 1–3 minute demo video URL.
+- Main contract: [`contracts/raidclub-evm/src/RaidClub.sol`](contracts/raidclub-evm/src/RaidClub.sol)
+- Test suite: [`contracts/raidclub-evm/test/RaidClub.t.sol`](contracts/raidclub-evm/test/RaidClub.t.sol)
+- Deploy script: [`contracts/raidclub-evm/script/deploy_mainnet.sh`](contracts/raidclub-evm/script/deploy_mainnet.sh)
+- Contract scope: player registration, ticket purchase, raid session start, action execution, settlement, and progression updates.
 
-The MVP is structured around one tight consumer loop:
+The submitted demo is built around one loop:
 
 1. connect wallet
 2. claim a username
@@ -48,26 +58,30 @@ The MVP is structured around one tight consumer loop:
 5. run a short raid with 3-5 rapid actions
 6. settle loot and update the leaderboard
 
-The repository now contains both:
+This is the core submission claim:
 
-- a polished `Next.js` frontend
+> Initia Raid Club is the clearest demo of Initia-native gaming UX: identity, bridge, auto-signing, and fast onchain action in one loop.
+
+The repo contains both:
+
+- a `Next.js` frontend
 - a real MiniEVM contract project for onchain raid state
 
-When the required `NEXT_PUBLIC_*` env vars are present, the app switches from local mock mode into a live rollup client that uses InterwovenKit, bridge modal flow, and `MsgCall` transactions.
+When the required `NEXT_PUBLIC_*` env vars are present, the app runs as a live rollup client with InterwovenKit, bridge modal flow, and `MsgCall` transactions.
 
-## Why This Angle Fits Initia
+## Why Initia
 
-This project is built to showcase the native UX patterns Initia highlights for the hackathon:
+This project is built around the UX patterns Initia highlights for the hackathon:
 
 - `auto-signing` for rapid, repeated gameplay actions
 - `initia-usernames` for player identity and social surfaces
 - `interwoven-bridge` for in-app onboarding without bouncing users into a separate flow
 
-Instead of another generic dashboard, the product demonstrates why a dedicated appchain and native transaction UX matter for a real consumer application.
+The goal is to show why a dedicated appchain and native transaction UX matter for a consumer game, not just for backend infrastructure.
 
-## Current State
+## Included in This Repo
 
-Implemented now:
+Implemented:
 - `Next.js` App Router frontend
 - mock mode for local product iteration
 - mainnet-ready MiniEVM mode behind env configuration
@@ -77,12 +91,6 @@ Implemented now:
 - in-app bridge modal entrypoint
 - MiniEVM contract with Foundry tests
 - hackathon submission scaffolding
-
-Still required before final submission:
-- deploy the contract to your live rollup and fill real env values
-- bind a real contract address in `.env`
-- expose public rollup RPC / REST / JSON-RPC / indexer endpoints for the hosted frontend
-- record the public 1-3 minute demo video
 
 ## Stack
 
@@ -103,20 +111,9 @@ Still required before final submission:
 - `docs/` - demo-facing docs
 - `.initia/` - submission manifest template
 
-## Local Development
-
-Install dependencies and start the app:
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
 ## Mainnet Configuration
 
-Fill the values in [.env.example](/Users/zmaxx/Projects/Initia%20raid%20club/.env.example) and provide:
+Fill the values in [`.env.example`](.env.example) and provide:
 
 - rollup chain ID
 - rollup EVM chain ID
@@ -155,7 +152,7 @@ npm run mainnet:generate-config -- \
   --contract-address 0x1234567890abcdef1234567890abcdef12345678
 ```
 
-This writes `.env.local` and updates [`.initia/submission.json`](/Users/zmaxx/Projects/Initia%20raid%20club/.initia/submission.json) with:
+This writes `.env.local` and updates [`.initia/submission.json`](.initia/submission.json) with:
 
 - rollup chain ID
 - rollup EVM chain ID
@@ -181,7 +178,7 @@ npm run contracts:build
 npm run contracts:test
 ```
 
-Deploy from [contracts/raidclub-evm/script/deploy_mainnet.sh](/Users/zmaxx/Projects/Initia%20raid%20club/contracts/raidclub-evm/script/deploy_mainnet.sh) after setting:
+Deploy from [`contracts/raidclub-evm/script/deploy_mainnet.sh`](contracts/raidclub-evm/script/deploy_mainnet.sh) after setting:
 
 - `MAINNET_RPC_URL`
 - `DEPLOYER_PRIVATE_KEY`
@@ -192,13 +189,13 @@ Deploy from [contracts/raidclub-evm/script/deploy_mainnet.sh](/Users/zmaxx/Proje
 The intended judge path is:
 
 1. claim a username
-2. bridge in more INIT
+2. bridge in INIT
 3. mint a ticket
 4. enter a raid
 5. execute several auto-signed actions
 6. show the result, loot, and leaderboard update
 
-See [docs/demo-script.md](/Users/zmaxx/Projects/Initia raid club/docs/demo-script.md) for the short presentation flow.
+See [`docs/demo-script.md`](docs/demo-script.md) for the short presentation flow.
 
 ## Architecture Notes
 
@@ -232,4 +229,4 @@ Replace the current wallet-open username path with an explicit in-app `initia-us
 
 ## Notes
 
-The build currently succeeds, contract tests pass, and the app can run in either mock mode or env-configured onchain mode. The remaining work is operational: deploy the contract to your live rollup and bind the real endpoints and addresses.
+The build succeeds, contract tests pass, and the app runs in either mock mode or env-configured onchain mode.

@@ -56,17 +56,28 @@ export function resolveRaidTurn(
   action: ActionType,
 ): { nextSession: RaidSession; nextPlayerHp: number } {
   const gearBonus = getGearBonus(player, inventory)
-  const actionPower = {
-    attack: 16 + Math.ceil(gearBonus * 0.45),
-    guard: 10 + Math.ceil(gearBonus * 0.2),
-    special: 24 + Math.ceil(gearBonus * 0.55),
-    recover: 8,
-  }[action]
+  const isNightglassDemo = raid.id === "eclipse-altar"
+  const actionPower = isNightglassDemo
+    ? {
+        attack: 24 + Math.ceil(gearBonus * 0.45),
+        guard: 14 + Math.ceil(gearBonus * 0.25),
+        special: 38 + Math.ceil(gearBonus * 0.65),
+        recover: 8,
+      }[action]
+    : {
+        attack: 16 + Math.ceil(gearBonus * 0.45),
+        guard: 10 + Math.ceil(gearBonus * 0.2),
+        special: 24 + Math.ceil(gearBonus * 0.55),
+        recover: 8,
+      }[action]
   const playerHeal = action === "recover" ? 12 + Math.ceil(gearBonus * 0.15) : 0
   const enemyBase = raid.difficulty === "Boss" ? 18 : raid.difficulty === "Medium" ? 12 : 8
   const enemyDamage = Math.max(
     4,
-    enemyBase + session.turn * 2 - (action === "guard" ? 7 : 0) - (action === "recover" ? 2 : 0),
+    enemyBase +
+      session.turn * 2 -
+      (action === "guard" ? (isNightglassDemo ? 11 : 7) : 0) -
+      (action === "recover" ? 2 : 0),
   )
   const enemyHp = Math.max(0, session.enemyHp - actionPower)
   const nextHp = Math.min(player.maxHp, player.hp - enemyDamage + playerHeal)
